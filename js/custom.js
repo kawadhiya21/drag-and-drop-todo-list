@@ -59,8 +59,13 @@ function addSortingProperties() {
 
 $('#addnew').click(function () {
   var todo = prompt("Add new todo");
+  if (!todo) {
+    alert("Blank string passed");
+    return false;
+  }
+
   todo_list.push({
-    name: todo
+    name: todo.replace(/</g, "&lt;").replace(/>/g, "&gt;")
   });
   update_todo_list(todo_list);
   populate(todo_list);
